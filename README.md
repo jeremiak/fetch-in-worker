@@ -2,7 +2,7 @@
 
 ## idea
 
-idk, get off the main thread? what if we used web workers to do that? this replaces the `fetch` global object with a wrapper that spawns a web worker, which executes the fetch and does some JSON parsing, and returns a promise. the idea is that it should just work where `fetch` currently works but takes the request and processing off the main thread entirely.
+idk, [get off the main thread?](https://daverupert.com/2018/01/bad-month-for-the-main-thread/) what if we used web workers to do that? this replaces the `fetch` global object with a wrapper that spawns a web worker, which executes the fetch and does some JSON parsing, and returns a promise. the idea is that it should just work where `fetch` currently works but takes the request and processing off the main thread entirely.
 
 ### future ideas?
 
