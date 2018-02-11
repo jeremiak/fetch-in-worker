@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Use fetch API in web worker</title>
+    <style>
+      textarea {
+        width: 50%;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="library-status"></div>
+    <main>
+      <label for="url">Enter a URL to request</label>
+      <input type="text" id="url" name="url" value="https://baconipsum.com/api/?type=all-meat&paras=2&start-with-lorem=1">
+      <button id="request">Make request</button>
+      <textarea disabled id="json-response" name="json-response"></textarea>
+    </main>
+    <script src="./index.js"></script>
+    <script>
+      function $(sel) {
+        return document.querySelectorAll(sel)
+      }
+
+      function determineLoaded() {
+        const $div = $('#library-status')[0]
+        const hasLoaded = window._fetch && window.fetch
+        $div.innerText = hasLoaded ? 'loaded' : 'is-not-loaded'
+      }
+
+      function handleClick(e) {
+        const $textarea = $('textarea')[0]
+        const url = $('#url')[0].value
+        fetch(url).then(response => {
+          response.json().then(j => {
+            $textarea.value = JSON.stringify(j, null, 2)
+          })
+        })
+      }
+
+      const $button = $('button')[0]
+      $button.addEventListener('click', handleClick)
+      determineLoaded()
+    </script>
+  </body>
+</html>
