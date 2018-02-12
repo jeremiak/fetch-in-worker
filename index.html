@@ -3,7 +3,11 @@
   <head>
     <title>Use fetch API in web worker</title>
     <style>
-      form, code {
+      body > div {
+        margin: 0 auto;
+        width: 90%;
+      }
+      form, #demo code {
         float: left;
         width: 45%;
       }
@@ -11,7 +15,7 @@
         margin-left: 3%;
         margin-right: 2%;
       }
-      code {
+      #demo code {
         margin-left: 2%;
         margin-right: 3%;
       }
@@ -65,8 +69,13 @@
     </style>
   </head>
   <body>
-    <div id="library-status"></div>
-    <main>
+    <div>
+      <h1>fetch by web worker</h1>
+      <p>the idea is to monkey patch the <code>fetch()</code> method to use a web worker. it should <i>mostly</i> behave the same way but make the request and parse the json off the main thread.</p>
+      <p>the <a href="https://www.github.com/jeremiak/fetch-in-worker">code for this</a> is on github.</p>
+    </div>
+    <div id="demo">
+      <div id="library-status"></div>
       <form>
         <label for="url">Enter a URL to request through the worker</label>
         <input type="text" id="url" name="url" value="https://baconipsum.com/api/?type=all-meat&paras=2&start-with-lorem=1">
@@ -75,7 +84,7 @@
       <code>
         <pre id="json-response"></pre>
       </code>
-    </main>
+    </div>
     <script src="./index.js"></script>
     <script>
       function $(sel) {
