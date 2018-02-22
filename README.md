@@ -1,5 +1,9 @@
 # fetch wrapper to use web workers
 
+**update** turns out that the `.json()` method on a fetch request isn't blocking so not sure there's really a point in this after all. in fact, it might even just make things worse by duplicating the message object.
+
+<img src="https://media.giphy.com/media/fKk2I5iiWGN0I/giphy.gif" width="180px">
+
 ## idea
 
 idk, to get off the main thread? what if we used web workers to do that? this replaces the `fetch` global object with a wrapper that spawns a web worker, which executes the fetch and does some JSON parsing, and returns a promise. the idea is that it should just work where `fetch` currently works but takes the request and processing off the main thread entirely.
